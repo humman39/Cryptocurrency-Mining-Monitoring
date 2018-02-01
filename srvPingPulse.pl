@@ -8,17 +8,17 @@ use Time::localtime;
 
 ########################### Edit your config ###############################
 # List of servers separated by comma. Server IP/name should be in double-quote
-my @srvToMon = ("192.168.0.10"); 
+my @srvToMon = ("192.168.0.30"); 
 
 # Inerval between ping in seconds
-my $sleepTime = 180; 
+my $sleepTime = 5; 
 
 # Email to be used to send from, and password (I recommend to set separate email for this)
-my $fromEmail = "myEmailFrom\@gmail.com";
-my $pass = "xxxxxxxxxx"; chomp($pass);
+my $fromEmail = "fromEmail\@gmail.com";
+my $pass = "xxxxxxxx"; chomp($pass);
 
 # Email to receive emails about failures
-my $toEmail = "myEmailTo\@gmail.com";
+my $toEmail = "toEmail\@gmail.com";
 
 # Email message in body
 my $emailMsg = "Start Panicing!";
@@ -53,13 +53,13 @@ while ("having fun") {
                sendEmailAlert($srv, $stats); 
             }
             else {
-               $rc = $line;
+               print "\n$currentTime - $line";
             }
          } 
       } 
-      print "\n$currentTime - $rc";
+      print "\n$currentTime - Sleeping for $sleepTime seconds ...\n";
    }
-   print "\n$currentTime - Sleeping for $sleepTime seconds ...\n";
+
    select()->flush();
    sleep($sleepTime);
 }
